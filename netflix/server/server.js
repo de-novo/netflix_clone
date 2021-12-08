@@ -1,5 +1,7 @@
 //server 기본설정
 const express = require("express"); //express
+const {MongodbUrl} = require('./MongodbUrl')
+
 const port = 4000; // 따로 파일작성  config
 
 //express

@@ -1,0 +1,474 @@
+html {
+    font-size: 62.5%;
+}
+* {
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    color: white;
+    padding: 0;
+}
+body {
+    background-color: #333;
+}
+
+.medium {
+    font-size: 1.6rem;
+}
+.large {
+    font-size: 1.92rem;
+}
+.xlarge {
+    font-size: 2.6rem;
+}
+.xxxlarge {
+    font-size: 5rem;
+}
+.thin {
+    font-weight: 400;
+}
+.bold {
+    font-weight: 700;
+}
+
+img {
+    width: 100%;
+}
+video {
+    width: 100%;
+}
+/* nav 바 디자인 */
+.nav-container {
+    margin: auto;
+    width: 100%;
+    max-width: 180rem;
+    max-height: 10rem;
+    padding-top: 2rem;
+    background-color: transparent;
+}
+.nav-box {
+    margin: 0 5.6rem;
+    /* background-color: blue; */
+    height: 4.4rem;
+    padding-top: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo-box {
+    width: 20rem;
+    /* background-color: brown; */
+}
+.logo-box > svg {
+    position: relative;
+
+    /* width: 100%; */
+    height: 100%;
+}
+
+.menu-container {
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    /* max-width: 20rem;
+    min-width: 18rem; */
+}
+.menu-container > select {
+    position: relative;
+    display: inline;
+    width: 9rem;
+    height: 3.6rem;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px solid white;
+    margin-left: 1.2rem;
+    margin-right: 2.4rem;
+}
+.menu-container > a {
+    padding: 7px 17px;
+    background-color: #e50914;
+    border-radius: 5px;
+}
+
+/* 스타트페이지  */
+.start-back-img-box {
+    background-color: tomato;
+    overflow: hidden;
+    z-index: -1;
+    background: linear-gradient(to top, rgba(0, 0, 0, 8) 0, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0.8) 100%);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 77rem;
+}
+.start-back-img-box > img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+
+    object-fit: cover;
+}
+.start-back-img-box > div {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+
+    background: rgba(0, 0, 0, 0.4);
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%);
+    object-fit: cover;
+}
+.start-title-box {
+    word-break: keep-all;
+    margin: auto;
+    z-index: 1;
+    width: 100%;
+    max-width: 96rem;
+    height: 70.6rem;
+    /* background-color: blue; */
+    position: relative;
+    top: 0;
+    margin-bottom: 0.8rem;
+}
+
+.start-title-box > div {
+    position: relative;
+    margin: auto;
+
+    top: 50%;
+    width: 100%;
+    max-width: 96rem;
+
+    transform: translateY(-50%);
+    /* background-color: blueviolet; */
+    text-align: center;
+}
+.start > h1,
+.end > h1 {
+    margin: auto;
+    max-width: 64rem;
+}
+.start > h2 ,
+.end > h2 {
+    margin: 1.6rem auto;
+    max-width: 64rem;
+}
+.start > h3 ,
+.end > h3 {
+    padding-bottom: 2rem;
+    padding: auto;
+}
+.start input, 
+.end input {
+    font-size: 1.6rem;
+    height: 6rem;
+    width: 45rem;
+
+    color: black;
+    border-radius: 2px;
+    border: none;
+    vertical-align: middle;
+
+    padding: 1rem;
+    /* padding-bottom:0 ; */
+}
+.start button ,
+.end button {
+    background-color: #e50914;
+    border: #e50914;
+    border-radius: 2px;
+    width: 18.05rem;
+    height: 6rem;
+    vertical-align: middle;
+}
+.email-input {
+    position: relative;
+    width: fit-content;
+    margin: auto;
+}
+.email-input > div {
+    display: inline-block;
+    position: relative;
+}
+.email-input label {
+    pointer-events: none;
+    position: absolute;
+    left: 1rem;
+    color: #8c8c8c;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.2s;
+}
+.email-input input:focus + label,
+.email-input input:valid + label {
+    font-size: 1.2rem;
+    transform: translateY(-150%);
+
+    font-weight: 600;
+    /* background-color: blueviolet; */
+}
+
+.email-input > input:focus {
+    outline: none;
+}
+
+/* 첫페이지 소개 */
+.info-container {
+    width: 100%;
+    background-color: black;
+    padding: 7rem 4.5rem;
+    margin-bottom: 0.8rem;
+    height: fit-content;
+}
+.info-box {
+    margin: auto;
+    max-width: 110rem;
+
+    width: 100%;
+    height: min-content;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    gap: 4.8rem;
+    word-break: keep-all;
+}
+
+.info-img {
+    /* flex-shrink: 0; */
+    /* flex-basis:auto; */
+    position: relative;
+    /* width: 39.7rem; */
+
+    width: 45%;
+    /* background-color: blue; */
+}
+.info-img > img {
+    position: relative;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.info-img > .info-video1 {
+    width: 75%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -55%);
+}
+.info-text {
+    /* flex-grow: 0; */
+    /* flex-basis:auto; */
+
+    width: 55%;
+    max-width: 54.7rem;
+    /* padding-left: 4.8rem;
+     */
+}
+.info-text h1 {
+    margin-bottom: 0.8rem;
+}
+.info-text h2 {
+    margin-top: 1.95rem;
+}
+.info-text > div {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.info-img > div {
+    height: fit-content;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.info-img > div > img {
+    position: absolute;
+    top: 0;
+}
+.info-img > .info-video2 {
+    width: 65%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -80%);
+}
+.info-box.QNA {
+    margin: auto;
+    gap: 0;
+    text-align: center;
+    align-items: center;
+    flex-flow: column;
+    width: 100%;
+}
+
+.info-text.QNA {
+    margin: auto;
+}
+.info-text.QNA > div {
+    top: 0;
+    transform: translateY(0);
+}
+
+.QNA-box {
+    margin: 5.2rem auto;
+    width: 100%;
+}
+.QNA-tab {
+    margin: 0.8rem auto;
+    background-color: #303030;
+    width: 70%;
+    max-width: 81.5rem;
+
+    overflow: hidden;
+    position: relative;
+}
+.QNA-tab > button {
+    z-index: 5;
+    background-color: transparent;
+    border: none;
+    padding: 2.08rem 5.72rem 2.08rem 3.12rem;
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid black;
+}
+.QNA-A {
+    width: 100%;
+    background-color: #303030;
+    text-align: left;
+    transition: all 0.2s;
+}
+.QNA-A.close {
+    position: relative;
+    z-index: -1;
+    max-height: 0;
+
+    padding: 0 3.12rem;
+}
+.QNA-A.open {
+    padding: 3.12rem;
+    display: block;
+    background-color: #303030;
+}
+
+@media screen and (max-width: 949px) {
+    .email-input > div {
+        display: block;
+        /* margin: auto; */
+    }
+    .start button,
+    .end button
+    {
+        font-size: 1.6rem;
+        width: 11.1rem;
+        height: 4rem;
+        margin: auto;
+        display: block;
+        margin-top: 1.6rem;
+    }
+
+    .start input,
+    .end input {
+        width: 50rem;
+        display: block;
+    }
+    .info-box {
+        margin: auto;
+        gap: 0;
+        text-align: center;
+        align-items: center;
+        flex-flow: column;
+        width: 100%;
+    }
+    .info-box.reverse {
+        flex-flow: column-reverse;
+    }
+    .info-text {
+        width: 100%;
+        top: 0;
+        margin-bottom: 0.4rem;
+    }
+
+    .info-text > div {
+        top: 0;
+        transform: translateY(0);
+    }
+    .info-img {
+        width: 100%;
+    }
+    .info-img > div {
+        top: 0;
+        transform: translateY(0);
+    }
+    .info-img > img {
+        top: 0;
+        transform: translateY(0);
+    }
+    .xxxlarge {
+        font-size: 4.16rem;
+    }
+    .xlarge {
+        font-size: 2rem;
+    }
+
+    .QNA-tab {
+        min-width: 50rem;
+    }
+    .QNA-tab > button {
+        padding: 1.6rem 4.4rem 1.6rem 2.4rem;
+    }
+}
+
+@media screen and (max-width: 549px) {
+    .menu-container {
+        font-size: 1.44rem;
+    }
+    .menu-container > a {
+        height: 2.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+    .menu-container > select {
+        height: 2.8rem;
+        margin-right: 1.2rem;
+    }
+    .email-input {
+        width: 90%;
+    }
+    .email-input>div{
+        width: 100%;
+    }
+    .menu-container {
+        flex-shrink: 0;
+        font-size: 1.44rem;
+    }
+    .info-container {
+    padding: 5rem 2.4rem;
+    }
+    .info-container.QNA{
+        padding: 5rem 0rem;
+    }
+    .end{
+        width: 100%;
+    }
+    .start input,.end input{
+        width: 100%;
+        max-width: 50rem;
+        height: 4.8rem;
+    }
+    .xxxlarge {
+        font-size: 2.6rem;
+    }
+    .xlarge {
+        font-size: 1.8rem;
+    }
+
+    .QNA-tab {
+        margin: 0.8rem auto;
+    }
+}
