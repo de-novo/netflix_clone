@@ -1,0 +1,38 @@
+.regform{
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    background-color: white;
+    color: black;
+}
+
+
+
+.regform-main{
+    word-break: keep-all;
+    margin: auto;
+    padding: 2rem 3.2rem 6rem;
+    width: 100%;
+    max-width: 96rem;
+    text-align: left;
+    color: #333;
+}
+.regform-main div{
+    margin: auto;
+}
+
+.regform-container{
+ width: 100%;
+ max-width: 44rem;
+ height: 500px;
+}
+.regform-container p{
+    margin: 0.8rem auto ;
+}
+
+
+
+
+.checkbox-container a{
+    color: rgb(44, 44, 250);
+}

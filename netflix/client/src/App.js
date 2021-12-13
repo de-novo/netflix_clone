@@ -10,7 +10,12 @@ import Startmain from "./components/StartPage/StartMain";
 
 //로그인 페이지
 import Login from './components/LoginPage/Login'
+//회원가입 페이지
+import Signup from "./components/Join/signup/Signup";
+import Regform from "./components/Join/Regform/Regform";
+//홈 
 
+import Home from "./components/Home";
 function App() {
     return (
         <div className="App">
@@ -18,6 +23,9 @@ function App() {
             <Routes>
                 <Route path='/' element={<Startmain/>}/>
                 <Route path='/login' element={<Login/>}/>
+                <Route path='/signup' element={<Signup/>}/>
+                <Route path='/signup/regform' element={<Regform/>}/>
+                <Route path='/home' element={<Home/>}/>
             </Routes> 
             {/* 로그인? 안했어? 그럼 이거봐 */}
 

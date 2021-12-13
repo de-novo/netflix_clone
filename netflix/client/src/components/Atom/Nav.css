@@ -1,0 +1,105 @@
+.home-background {
+    background-color: #b49c9c;
+}
+
+.home-header {
+
+    padding:0 clamp(0px, 4%, 7rem);
+    
+    width: 100%;
+    height: 6.8rem;
+    background-color: black;
+    display: flex;
+    gap: 3rem;
+    justify-content: space-between;
+}
+.header-logo{
+    width: 9.25rem;
+}
+.header-left {
+    display: flex;
+    justify-content:start;
+    width: 100%;
+    gap: 2%;
+    
+}
+
+.menu-container {
+    gap: 2rem;
+    display: flex;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.menu-box {
+    position: relative;
+    line-height: 100%;
+    vertical-align: middle;
+}
+
+
+.header-right{
+
+    display: flex;
+    right: 0;
+    justify-content: space-between;
+    align-items: center;
+    width: 18rem
+}
+.header-right div{
+    flex-shrink: 1;
+/* width: 100%; */
+}
+.header-user{
+    display: flex;
+    align-items: center;
+    gap:0.5rem;
+}
+.user{
+    width: 3.12rem;
+    height: 3.12rem;
+    background-color: white;
+}
+
+.menu-btn{
+    position: relative;
+   
+    transform: translateY(-12%);
+    padding-left: 0.5rem;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: white;
+}
+
+.menu-btn-box{
+    display: none;
+}
+@media screen and (max-width: 1500px){
+    
+
+}
+
+@media screen and (max-width: 950px){
+    .home-header{
+        height: 4.1rem;
+    }
+    .header-logo{
+        width: 5.875rem;
+    }
+    .header-right{
+        margin: auto;
+        height: 2.5rem;
+    }
+}
+
+
+@media screen and (max-width: 875px){
+    .menu-btn-box{
+        display: block;
+    }
+    .menu-box{
+        display: none;
+    }
+}
