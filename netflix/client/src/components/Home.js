@@ -1,6 +1,20 @@
 import React, { useRef, useState } from "react";
 import Nav from "./Atom/Nav";
 import useSlide from "./api/useSlide";
+
+import Slider from "./api/Slider";
+
+const Item = (props) => {
+    return (
+        <div>
+            {props.item?.id}
+            <br />
+            {props?.index}
+            {/* {props.index} */}
+        </div>
+    );
+};
+
 const movieList = [
     {
         id: 1,
@@ -94,58 +108,29 @@ const movieList = [
     },
 ];
 
-const next = () => {};
-const before = () => {};
-
 function Home() {
-    const movie = useSlide(movieList, 5);
-  
+
+    const slideSetting = {
+        target: movieList,
+        viewCount: 7,
+        delay: 500,
+        containerStyle: {
+            backgroundColor: "black",
+            height: "auto",
+        },
+        passNum: 4,
+        Component: Item,
+    };
 
     return (
         <div>
             <Nav></Nav>
             <div className="movie-container">
-                <button className="before" for="movie-card" onClick={movie.beforeButton}>
-                    before
-                </button>
-                <button className="before" for="movie-card" onClick={movie.nextButton}>
-                    next
-                </button>
                 <h2>박깉애 님이 시청 중인 콘첸츠</h2>
-                {/* {movie.nowlist.map((item) => {
-                    return (
-                        <div className="movie-item">
-                            <div className="movie-card"></div>
-                        </div>
-                    );
-                })} */}
-                <div className={"slider "+movie.className} >
-                    <div className={"movie-box"}>
-                        {movie.nowlist.map((item) => {
-                            return (
-                                <div className="movie-item">
-                                    <div className="movie-card">{item.id}</div>
-                                </div>
-                            );
-                        })}
-                        {/* <div className="movie-item">
-                        <div className="movie-card"></div>
-                    </div>
-                    <div className="movie-item">
-                        <div className="movie-card"></div>
-                    </div>
-                    <div className="movie-item">
-                        <div className="movie-card"></div>
-                    </div>
-                    <div className="movie-item">
-                        <div className="movie-card"></div>
-                    </div>
-                    <div className="movie-item">
-                        <div className="movie-card"></div>
-                    </div> */}
-                    </div>
-                </div>
+                <Slider {...slideSetting}></Slider>
             </div>
+
+            {/* <Slider {...slideSetting} /> */}
         </div>
     );
 }

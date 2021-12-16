@@ -7,6 +7,7 @@ html {
     box-sizing: border-box;
     list-style: none;
     padding: 0;
+    
 }
 body {
     color: white;
@@ -59,8 +60,9 @@ a:hover {
 /* home */
 
 .movie-container {
+    /* justify-content: center; */
     width: 100%;
-    height: 16.58rem;
+    /* height: 16.58rem; */
     background-color: darkblue;
     margin: 4.39rem auto;
     /* overflow: hidden; */
@@ -71,10 +73,10 @@ a:hover {
 .movie-container h2 {
     height: 25%;
 }
-.slider{
+/* .slider{
     transition: all 0.5s;
     width: 100%;
-}
+} */
 .movie-box {
     position: relative;
     width: 340%;
@@ -115,11 +117,19 @@ a:hover {
     /* transition: all 0.5s; */
 
 }
-.active-next{
+/* .active-next{
     transition: all 0.5s;
     transform: translateX(-100%);
 }
 .active-before{
     transition: all 0.5s;
     transform: translateX(100%);
+} */
+
+
+
+
+.slide-item{
+    display: inline-block;
+   
 }
