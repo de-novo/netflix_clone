@@ -18,7 +18,7 @@ function useSlide(target = ["리스트를 입력해주세요", "리스트를 입
     const movieCount = target.length;
     // viewCount가 너무 커서 리스트 짤림 방지를 위해 3번이 아닌 5번
     const list = [...target, ...target, ...target, ...target, ...target];
-    const pageNum = movieCount % passNum === 0 ? movieCount / passNum : Math.floor( movieCount / passNum) ;
+    const pageNum = movieCount % passNum === 0 ? movieCount / passNum : Math.ceil( movieCount / passNum) ;
     // viewCount 갯수의 3배 +2 개 -이유는 넘겼을때 양옆짤림방지 (패딩있을때)
     const [nowlist, setNowlist] = useState(list.slice(movieCount * 2 - viewCount - 1 + index, movieCount * 2 + viewCount * 2 + index + 1)); //1안
     // console.log(nowlist);
@@ -42,9 +42,9 @@ function useSlide(target = ["리스트를 입력해주세요", "리스트를 입
         let dotlist = [];
 
         // let nowPageIndex = index > movieCount ? 0 : index / passNum;
-        let nowPageIndex = index+passNum > movieCount ? 0 : index / passNum;
+        let nowPageIndex = index > movieCount ? 0 : index / passNum;
         // let nowPageIndex = index / passNum;
-        console.log('nowPageIndex',nowPageIndex);
+        console.log('nowPageIndex',nowPageIndex,'movieCount',movieCount);
         console.log('index',index);
     
         for (let i = 0; i < pageNum; i++) {
@@ -79,19 +79,42 @@ function useSlide(target = ["리스트를 입력해주세요", "리스트를 입
         return;
     }
 
+    
+    // const next = () => {
+    //     if (index >= movieCount) {
+    //         // console.log(index) //확인용
+    //         return setIndex(index + passNum - movieCount);
+    //     } else {
+    //         // console.log(index) //확인용
+    //         return setIndex(index + passNum);
+    //     }
+    // };
+    
+    // 
     const next = () => {
-        if (index >= movieCount) {
+        if (index+passNum >= movieCount) {
             // console.log(index) //확인용
-            return setIndex(index + passNum - movieCount);
+            return setIndex(0);
         } else {
             // console.log(index) //확인용
             return setIndex(index + passNum);
         }
     };
+
+
+    // const prev = () => {
+    //     if (-1 * index >= movieCount) {
+    //         // console.log(index) //확인용
+    //         return setIndex(index - passNum + movieCount);
+    //     } else {
+    //         // console.log(index) //확인용
+    //         return setIndex(index - passNum);
+    //     }
+    // };
     const prev = () => {
-        if (-1 * index >= movieCount) {
+        if (-1 * index+passNum >= movieCount) {
             // console.log(index) //확인용
-            return setIndex(index - passNum + movieCount);
+            return setIndex(0);
         } else {
             // console.log(index) //확인용
             return setIndex(index - passNum);

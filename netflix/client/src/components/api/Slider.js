@@ -29,19 +29,16 @@ function Slider(props) {
     // console.log(children)
     const SLIDER_STYLE = {
         position: "relative",
-        height: "40rem",
+     
         width: `${SLIDER_WIDTH}%`,
-        backgroundColor: "green",
         left: " 50%",
         transform: "translateX(-50%)",
     };
 
     const ITEM_STYLE = {
         ...itemStyle,
-        width: `${ITEM_WIDTH}%`,
+        width: `${ITEM_WIDTH}%`, 
         border: "1px solid white",
-        height: "40rem",
-        backgroundColor: "red",
         display: "inline-block",
     };
 

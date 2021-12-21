@@ -18,7 +18,7 @@ function Button_100(props) {
     };
     return (
         <div>
-            <button className={className} style={style}><Link to={path}>{props.content}</Link></button>
+            <button className={className} style={style} onClick={props.onSubmit}><Link to={path}>{props.content}</Link></button>
         </div>
     );
 }

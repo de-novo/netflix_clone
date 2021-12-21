@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
-import Nav from "./Atom/Nav";
-import useSlide from "./api/useSlide";
+import Nav from "../Atom/Nav";
+import useSlide from "../api/useSlide";
 
-import Slider from "./api/Slider";
+import Slider from "../api/Slider";
 
 const Item = (props) => {
     return (
@@ -112,13 +112,14 @@ function Home() {
 
     const slideSetting = {
         target: movieList,
-        viewCount: 7,
+        viewCount: 5,
         delay: 500,
         containerStyle: {
             backgroundColor: "black",
             height: "auto",
+            padding:'0 clamp(0px, 4%, 7rem)'
         },
-        passNum: 4,
+        passNum: 5,
         Component: Item,
     };
 
@@ -129,8 +130,28 @@ function Home() {
                 <h2>박깉애 님이 시청 중인 콘첸츠</h2>
                 <Slider {...slideSetting}></Slider>
             </div>
+            <div className="movie-container">
+                <h2>박깉애 님이 시청 중인 콘첸츠</h2>
+                <Slider {...slideSetting}></Slider>
+            </div>
+            <div className="movie-container">
+                <h2>박깉애 님이 시청 중인 콘첸츠</h2>
+                <Slider {...slideSetting}></Slider>
+            </div>
+            <div className="movie-container">
+                <h2>박깉애 님이 시청 중인 콘첸츠</h2>
+                <Slider {...slideSetting}></Slider>
+            </div>
+            <div className="movie-container">
+                <h2>박깉애 님이 시청 중인 콘첸츠</h2>
+                <Slider {...slideSetting}></Slider>
+            </div>
+            <div className="movie-container">
+                <h2>박깉애 님이 시청 중인 콘첸츠</h2>
+                <Slider {...slideSetting}></Slider>
+            </div>
 
-            {/* <Slider {...slideSetting} /> */}
+           
         </div>
     );
 }

@@ -10,9 +10,13 @@ function Input_100(props) {
     const labelStyle={
         ...props.labelStyle
     }
+
+
+
+
     return (
         <div className="login-form-input">
-            <input {...attr} required="required" style={inputStyle}></input>
+            <input {...attr} required="required" style={inputStyle} onChange={props.onChange} value={props.inputs?props.inputs[attr.name]:""}></input>
             <label className="medium" style={labelStyle}>{props.label}</label>
         </div>
     );

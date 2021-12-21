@@ -15,7 +15,7 @@ import Signup from "./components/Join/signup/Signup";
 import Regform from "./components/Join/Regform/Regform";
 //홈 
 
-import Home from "./components/Home";
+import Home from "./components/Home/Home";
 function App() {
     return (
         <div className="App">

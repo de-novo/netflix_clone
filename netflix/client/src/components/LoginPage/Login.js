@@ -1,4 +1,7 @@
-import React from "react";
+import React ,{useEffect}from "react";
+import axios from "axios";
+import useInput from "../api/useInput";
+
 import { Link } from "react-router-dom";
 import Logo from "../Atom/Logo";
 import Button_100 from "../Atom/Button_100";
@@ -6,6 +9,15 @@ import Input_100 from "../Atom/Input_100.js";
 import "./Login.css";
 
 function Signup() {
+
+    const {inputs,setInputs,onChange,onSubmit}=useInput('/api/login',()=>{})
+
+
+    useEffect(() => {
+        axios.get('/api').then(res=>setInputs({...inputs,...res.data}))
+        
+    }, [])
+
     return (
         <div className="main">
             <div class="background">
@@ -38,8 +50,8 @@ function Signup() {
                     <input required="required"></input>
                     <label className="medium">비밀번호</label>
                 </div> */}
-                <Input_100 attr={{ id: "login_email" }} label={"이메일 주소 또는 전화번호"}></Input_100>
-                <Input_100 attr={{ id: "login_pw" }} label={"비밀번호"}></Input_100>
+                <Input_100 attr={{ id: "login_email" , name:'Email'}} onChange={onChange} inputs={inputs} label={"이메일 주소 또는 전화번호"}></Input_100>
+                <Input_100 attr={{ id: "login_pw", name:'password' }}  onChange={onChange} inputs={inputs} label={"비밀번호"}></Input_100>
 
                 <Button_100 to={'/home'} content={"로그인"}></Button_100>
                 {/* <button class="login-form-button medium bold">로그인</button> */}

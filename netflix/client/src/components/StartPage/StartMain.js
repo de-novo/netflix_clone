@@ -1,11 +1,31 @@
 import React, { useState } from "react";
 
 import Logo from "../Atom/Logo";
-import { Link } from "react-router-dom";
-import './StartMain.css'
+import { Link, useNavigate } from "react-router-dom";
+import useInput from "../api/useInput";
+import "./StartMain.css";
+
+const validator = (data) => {
+    return EmailVlidator(data?.Email) ? true : false;
+};
+
+const EmailVlidator = (Email) => {
+    let regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+    return regEmail.test(Email);
+};
 
 function Startmain() {
     const [tab, setTab] = useState();
+    const navigate = useNavigate();
+    const go_true = () => {
+        navigate("/login");
+    };
+    const go_false = () => {
+        navigate("/signup");
+    };
+
+
+    const { inputs, onChange, onSubmit } = useInput("/api", validator,go_true ,go_false);
 
     const buttonHandler = (i) => {
         if (tab === i) {
@@ -21,13 +41,13 @@ function Startmain() {
             <header className="App-header">
                 <nav className="nav-container">
                     <div className="nav-box">
-                    <div className="logo-container" >
+                        <div className="logo-container">
                             <Logo></Logo>
                         </div>
-                        
+
                         <div className="start-menu-container">
                             <select></select>
-                            <Link to='/login'>로그인</Link>
+                            <Link to="/login">로그인</Link>
                         </div>
                     </div>
                 </nav>
@@ -44,11 +64,13 @@ function Startmain() {
                         <h3 className="large thin">시청할 준비가 되셨나요? 멤버십을 등록하거나 재시작하려면 이메일 주소를 입력하세요.</h3>
                         <div className="email-input">
                             <div>
-                                <input required="required"></input>
+                                <input name="Email" required="required" onChange={onChange} value={inputs?.Email ? inputs.Email : ""}></input>
                                 <label className="medium">이메일 주소</label>
                             </div>
                             <div>
-                                <button className="xlarge thin"><Link to='/signup'>시작하기 ></Link ></button>
+                                <button className="xlarge thin" onClick={onSubmit}>
+                                    시작하기 >
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -197,19 +219,20 @@ function Startmain() {
                                         있습니다.
                                     </span>
                                 </div>
-
                             </li>
                         </ul>
-                        <div className='end'>
-                        <div className="email-input">
-                            <div>
-                                <input required="required"></input>
-                                <label className="medium">이메일 주소</label>
+                        <div className="end">
+                            <div className="email-input">
+                                <div>
+                                    <input name="Email" required="required" onChange={onChange} value={inputs?.Email ? inputs.Email : ""}></input>
+                                    <label className="medium">이메일 주소</label>
+                                </div>
+                                <div>
+                                    <button className="xlarge thin" onClick={onSubmit}>
+                                        시작하기 >
+                                    </button>
+                                </div>
                             </div>
-                            <div>
-                                <button className="xlarge thin">시작하기 ></button>
-                            </div>
-                        </div>
                         </div>
                     </div>
                 </div>
