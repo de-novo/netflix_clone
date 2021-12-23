@@ -6,6 +6,8 @@ import Button_100 from "../../Atom/Button_100";
 import Input_100 from "../../Atom/Input_100";
 import useInput from "../../api/useInput";
 import axios from "axios";
+
+import { useNavigate } from "react-router-dom";
 const validator = (data) => {
     return EmailVlidator(data?.Email)&&data?.password&&data?.checkPrivacy==='true'&&data?.checkAlram==='true'?true:false
 };
@@ -15,10 +17,15 @@ const EmailVlidator=(Email)=>{
     return regEmail.test(Email)
 }
 
+
+
+
 function Regform() {
     const {inputs,setInputs,onChange,onSubmit}=useInput('/api/signup/regform',validator)
-
-
+    const navigate = useNavigate();
+    const go_true = () => {
+        navigate("/login");
+    };
     useEffect(() => {
         axios.get('/api').then(res=>setInputs({...inputs,...res.data}))
         

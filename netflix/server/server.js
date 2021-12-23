@@ -1,34 +1,31 @@
 //server 기본설정
 const express = require("express"); //express
 const { MongodbUrl } = require("./MongodbUrl");
-
+const mongoose = require("mongoose");
 const port = 4000; // 따로 파일작성  config
 
 //express
 const app = express();
 const http = require("http").createServer(app);
 
+//model
+const CounterModel =  require('./models/counter')
+
 app.use(express.json());
+
 // app.use(express.urlencoded({extended:true}));
 
 //db설정
-const MongoClient = require("mongodb").MongoClient; // mongodb 설정
-
-let db;
-MongoClient.connect(MongodbUrl, (error, client) => {
-    if (error) {
-        return console.error("ERROR:", error);
-    }
-
-    db = client.db("NETFLIX_CLONE");
-
-    http.listen(port, () => {
-        console.log(`Listening on ${port}`);
-        console.log(`MongoDB connected`);
-    });
+http.listen(port, () => {
+    console.log(`Listening on ${port}`);
 });
 
-let signData = {};
+
+
+CounterModel.findOne({name:'userCount'},(err,data)=>{
+    console.log(data)
+})
+
 
 // sign 회원가입
 app.post("/api", (req, res, next) => {
@@ -42,11 +39,9 @@ app.post("/api", (req, res, next) => {
         console.log(result);
         if (result) {
             res.send(true);
-        }else{
+        } else {
             res.send(false);
         }
-
-       
     });
 
     console.log(signData);
@@ -85,7 +80,7 @@ app.post("/api/signup/regform", (req, res, next) => {
                 if (error) {
                     return console.log("error:", error);
                 }
-                res.send("add user");
+                res.send("true");
             });
         });
     });
