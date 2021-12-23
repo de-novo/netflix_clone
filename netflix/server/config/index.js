@@ -11,6 +11,7 @@ export default {
     // mongoDB URL
     DB_URL: process.env.DB_URL,
 
+
     api: {
         prefix: "/api",
     },
@@ -18,4 +19,10 @@ export default {
     logs: {
         level: process.env.LOG_LEVEL || "silly",
     },
+
+
+// JWT secret
+    ACCESS_TOKEN_SECRET : process.env.ACCESS_TOKEN_SECRET,
+    REFRESH_TOKEN_SECRET : process.env.REFRESH_TOKEN_SECRET,
+    
 };

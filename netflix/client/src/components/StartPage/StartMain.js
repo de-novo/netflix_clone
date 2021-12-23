@@ -5,18 +5,30 @@ import { Link, useNavigate } from "react-router-dom";
 import useInput from "../api/useInput";
 import "./StartMain.css";
 
-const validator = (data) => {
-    return EmailVlidator(data?.Email) ? true : false;
-};
 
 const EmailVlidator = (Email) => {
     let regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
     return regEmail.test(Email);
 };
+const validator = (data) => {
+    return EmailVlidator(data?.Email) ? true : false;
+};
 
 function Startmain() {
     const [tab, setTab] = useState();
     const navigate = useNavigate();
+
+    const isUser = (data)=>{
+        console.log(data.isUser)
+        if(data.isUser){
+           return navigate("/login");
+        }
+        return navigate("/signup");
+
+    }
+
+
+
     const go_true = () => {
         navigate("/login");
     };
@@ -25,7 +37,7 @@ function Startmain() {
     };
 
 
-    const { inputs, onChange, onSubmit } = useInput("/api", validator,go_true ,go_false);
+    const { inputs, onChange, onSubmit } = useInput("/api", validator,isUser);
 
     const buttonHandler = (i) => {
         if (tab === i) {
