@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+
 import Signupheader from "../Signupheader";
-import Button_100 from "../../Atom/Button_100";
+import Button100 from "../../Atom/Button_100";
 import "./Signup.css";
 
 function Join() {
@@ -17,7 +17,7 @@ function Join() {
                     <p className="small normal">1/3단계</p>
                     <p className="xxlarge normal">계정 설정 마무리하기</p>
                     <p className="large thin">맞춤형콘텐츠 서비스, 넷플릭스! 비밀번호를 설정해 다양한 디바이스에서 아무 때나 시청하세요.</p>
-                  <Button_100 content={'다음'} to={'/signup/regform'} style={{fontSize:'2.4rem'}}></Button_100>
+                  <Button100 content={'다음'} to={'/signup/regform'} style={{fontSize:'2.4rem'}}></Button100>
                 </div>
             </main>
         </div>

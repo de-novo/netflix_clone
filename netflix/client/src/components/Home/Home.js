@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import Nav from "../Atom/Nav";
-import useSlide from "../api/useSlide";
+
 
 import Slider from "../api/Slider";
 
@@ -130,27 +130,7 @@ function Home() {
                 <h2>박깉애 님이 시청 중인 콘첸츠</h2>
                 <Slider {...slideSetting}></Slider>
             </div>
-            <div className="movie-container">
-                <h2>박깉애 님이 시청 중인 콘첸츠</h2>
-                <Slider {...slideSetting}></Slider>
-            </div>
-            <div className="movie-container">
-                <h2>박깉애 님이 시청 중인 콘첸츠</h2>
-                <Slider {...slideSetting}></Slider>
-            </div>
-            <div className="movie-container">
-                <h2>박깉애 님이 시청 중인 콘첸츠</h2>
-                <Slider {...slideSetting}></Slider>
-            </div>
-            <div className="movie-container">
-                <h2>박깉애 님이 시청 중인 콘첸츠</h2>
-                <Slider {...slideSetting}></Slider>
-            </div>
-            <div className="movie-container">
-                <h2>박깉애 님이 시청 중인 콘첸츠</h2>
-                <Slider {...slideSetting}></Slider>
-            </div>
-
+     
            
         </div>
     );

@@ -65,7 +65,7 @@ function Slider(props) {
                         const noPaddingClassName = viewCount >= index ? "prev-item" : index > 2 * viewCount ? "next-item" : "current-item";
                         const paddingClassName = viewCount > index ? "prev-item" : index > 2 * viewCount + 1 ? "next-item" : "current-item";
                         return (
-                            <div className={`slide-item ${CONTAINER_STYLE.padding ? paddingClassName : noPaddingClassName}`} style={{ ...ITEM_STYLE }}>
+                            <div className={`slide-item ${CONTAINER_STYLE.padding ? paddingClassName : noPaddingClassName}`} style={{ ...ITEM_STYLE } } key={index}>
                                 <Component item={item} index={index}></Component>
                             </div>
                         );
@@ -74,7 +74,7 @@ function Slider(props) {
             </div>
             <button onClick={slideitem.nextButton} style={{ ...BUTTON_STYLE, right: "0" }}></button>
             <button onClick={slideitem.prevButton} style={{ ...BUTTON_STYLE, left: "0" }}></button>
-            <div style={DOT_BOX_STYLE}><ul style={{display:'flex',justifyContent:'center'}}>{slideitem.dot?.map((item,index)=><li>{item}</li>)}</ul></div>
+            <div style={DOT_BOX_STYLE}><ul style={{display:'flex',justifyContent:'center'}}>{slideitem.dot?.map((item,index)=><li key={index}>{item}</li>)}</ul></div>
         </div>
     );
 }

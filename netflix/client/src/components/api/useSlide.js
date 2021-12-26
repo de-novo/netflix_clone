@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 // 약간의 fake 를 통한 슬라이드 구현
 // 장점? html (DOM)에 비교적 적은 요소들
@@ -17,12 +17,15 @@ function useSlide(target = ["리스트를 입력해주세요", "리스트를 입
     const [dot, setDot] = useState();
     const movieCount = target.length;
     // viewCount가 너무 커서 리스트 짤림 방지를 위해 3번이 아닌 5번
-    const list = [...target, ...target, ...target, ...target, ...target];
+    const [list,setList] = useState([]);
     const pageNum = movieCount % passNum === 0 ? movieCount / passNum : Math.ceil( movieCount / passNum) ;
     // viewCount 갯수의 3배 +2 개 -이유는 넘겼을때 양옆짤림방지 (패딩있을때)
     const [nowlist, setNowlist] = useState(list.slice(movieCount * 2 - viewCount - 1 + index, movieCount * 2 + viewCount * 2 + index + 1)); //1안
     // console.log(nowlist);
 
+    useEffect(() => {
+        setList([...target, ...target, ...target, ...target, ...target])
+    }, [target])
     //버튼 핸들러 - ClassName 을 뱉어줌
     const [buttonHandle, setButtonHandle] = useState(0);
     const [className, setClassName] = useState("current");
@@ -40,13 +43,11 @@ function useSlide(target = ["리스트를 입력해주세요", "리스트를 입
 
     useEffect(() => {
         let dotlist = [];
-
         // let nowPageIndex = index > movieCount ? 0 : index / passNum;
         let nowPageIndex = index > movieCount ? 0 : index / passNum;
         // let nowPageIndex = index / passNum;
         console.log('nowPageIndex',nowPageIndex,'movieCount',movieCount);
         console.log('index',index);
-    
         for (let i = 0; i < pageNum; i++) {
             if (index >= 0) {
                 if (i === nowPageIndex) {
@@ -64,12 +65,11 @@ function useSlide(target = ["리스트를 입력해주세요", "리스트를 입
             }
         }
         setDot(dotlist);
-
         const item = list.slice(movieCount * 2 - viewCount - 1 + index, movieCount * 2 + viewCount * 2 + index + 1);
         // console.log("item:", item);
         // console.log(index);
         return setNowlist(item);
-    }, [index]);
+    }, [index,list,movieCount,passNum,viewCount,pageNum]);
 
     if (!Array.isArray(target)) {
         return;

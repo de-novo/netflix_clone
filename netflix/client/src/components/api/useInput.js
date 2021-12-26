@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import axios from "axios";
 function useInput(url, validation,go) {
@@ -31,6 +31,7 @@ function useInput(url, validation,go) {
         axios
             .post(url, inputs)
             .then((res) => {
+                console.log(res.data)
                 onReset();
                 if(go){
                     go(res.data)

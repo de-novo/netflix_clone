@@ -7,7 +7,7 @@ import "./StartMain.css";
 
 
 const EmailVlidator = (Email) => {
-    let regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+    let regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
     return regEmail.test(Email);
 };
 const validator = (data) => {
@@ -24,17 +24,7 @@ function Startmain() {
            return navigate("/login");
         }
         return navigate("/signup");
-
     }
-
-
-
-    const go_true = () => {
-        navigate("/login");
-    };
-    const go_false = () => {
-        navigate("/signup");
-    };
 
 
     const { inputs, onChange, onSubmit } = useInput("/api", validator,isUser);
@@ -46,7 +36,7 @@ function Startmain() {
             setTab(i);
         }
     };
-
+    // 2IZPV3PL35GEFDMFBUZ6RJUFTY
     return (
         <div>
             {" "}
@@ -66,7 +56,7 @@ function Startmain() {
             </header>
             <main>
                 <div className="start-back-img-box">
-                    <img src="\KR-ko-20211129-popsignuptwoweeks-perspective_alpha_website_small.jpg"></img>
+                    <img src="\KR-ko-20211129-popsignuptwoweeks-perspective_alpha_website_small.jpg" alt='첫페이지'></img>
                     <div></div>
                 </div>
                 <div className="start-title-box">
@@ -96,18 +86,18 @@ function Startmain() {
                             </div>
                         </div>
                         <div className="info-img">
-                            <video className="info-video1" autoplay="autoplay" playsinline="playsinline" muted="muted" loop="loop">
+                            <video className="info-video1" autoPlay="autoPlay" playsInline="playsInline" muted="muted" loop="loop">
                                 <source src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-0819.m4v" type="video/mp4"></source>
                             </video>
 
-                            <img src="\tv.png"></img>
+                            <img src="\tv.png" alt='첫페이지'></img>
                         </div>
                     </div>
                 </div>
                 <div className="info-container ">
                     <div className="info-box reverse">
                         <div className="info-img">
-                            <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg"></img>
+                            <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" alt='첫페이지'></img>
                         </div>
 
                         <div className="info-text">
@@ -127,18 +117,18 @@ function Startmain() {
                             </div>
                         </div>
                         <div className="info-img">
-                            <video className="info-video2" autoplay="autoplay" playsinline="playsinline" muted="muted" loop="loop">
+                            <video className="info-video2" autoPlay="autoPlay" playsInline="playsInline" muted="muted" loop="loop">
                                 <source src=" https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-devices.m4v" type="video/mp4"></source>
                             </video>
 
-                            <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/device-pile.png"></img>
+                            <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/device-pile.png" alt='첫페이지'></img>
                         </div>
                     </div>
                 </div>
                 <div className="info-container ">
                     <div className="info-box reverse">
                         <div className="info-img">
-                            <img src="https://occ-0-988-1361.1.nflxso.net/dnm/api/v6/19OhWN2dO19C9txTON9tvTFtefw/AAAABTyynLTvOBU46RmBnCIPyjAryrXCZKImpoXdp7Mz54jVGKnBQ1X84bzR-3vtD-RA4uu2b1FjrDgfxE6KElG14WAXW19X.png?r=acf"></img>
+                            <img src="https://occ-0-988-1361.1.nflxso.net/dnm/api/v6/19OhWN2dO19C9txTON9tvTFtefw/AAAABTyynLTvOBU46RmBnCIPyjAryrXCZKImpoXdp7Mz54jVGKnBQ1X84bzR-3vtD-RA4uu2b1FjrDgfxE6KElG14WAXW19X.png?r=acf" alt='첫페이지'></img>
                         </div>
 
                         <div className="info-text">
