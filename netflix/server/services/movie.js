@@ -28,7 +28,7 @@ export class MovieService {
         let trailerURL ;
         switch (result.site){
             case 'YouTube':{
-                trailerURL = `https://www.youtube.com/watch?v=${result.key}`
+                trailerURL = `https://www.youtube.com/embed/${result.key}`
                 break;
             }
             case 'Vimeo':{

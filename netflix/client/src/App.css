@@ -7,7 +7,15 @@ html {
     box-sizing: border-box;
     list-style: none;
     padding: 0;
-    
+}
+
+.App > div {
+    background-color: black;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    /* height: 100%; */
+    width: 100%;
 }
 body {
     color: white;
@@ -60,27 +68,24 @@ a:hover {
 /* home */
 
 .movie-container {
-    /* justify-content: center; */
+    justify-content: center;
     width: 100%;
-    
+    /* position: relative; */
     background-color: black;
     margin: 4.39rem 0 0 0;
+    z-index: -1;
+    float: left;
    
 }
-.movie-container>h2{
-    padding: 0 clamp(0px, 4%, 7rem);   
+.movie-container > h2 {
+    padding: 0 clamp(0px, 4%, 7rem);
     height: 25%;
     font-size: 1.4vw;
-    margin: 0 0 0.6% 0 ;
+    margin: 0 0 0.6% 0;
+
 }
 
 /* .slider{
     transition: all 0.5s;
     width: 100%;
 } */
-
-
-
-
-
-

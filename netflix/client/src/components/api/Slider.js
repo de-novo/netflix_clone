@@ -1,6 +1,40 @@
 import React from "react";
 import useSlide from "./useSlide";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+
+const SliderContainer = styled.div`
+    ${(props) => props?.style}
+
+    position : relative;
+    &:hover {
+        z-index: 4;
+    }
+`;
+const SliderBox = styled.div`
+    transition: ${(props) => (props.slideitem.className === "current" ? "none" : `all ${props.delay / 1000}s`)};
+    transform: ${(props) =>
+        props.slideitem.className === "current" ? `translateX(0%)` : props.slideitem.className === "active-prev" ? `translateX(${props.MOVE_LENGTH}%)` : `translateX(${-props.MOVE_LENGTH}%)`};
+`;
+
+const Slide = styled.div`
+    ${(props) => props?.style}
+    position : relative;
+    width: ${(props) => props?.SLIDER_WIDTH}%;
+    left: 50%;
+    transform: translateX(-50%);
+`;
+
+const SlideItem = styled.div`
+    ${(props) => props?.style};
+    width: ${(props) => props?.ITEM_WIDTH}%;
+    display: inline-block;
+`;
+
+const ButtonStyle = styled.button`
+    ${(props) => props?.style};
+`;
+
 // setting , style , List ,count
 function Slider(props) {
     const { target, viewCount, delay, passNum, containerStyle, itemStyle, buttonStyle, dot, nowDot, otherDot, children, Component } = props;
@@ -18,38 +52,14 @@ function Slider(props) {
     const MOVE_LENGTH = (100 / viewCount) * passNum; //몇개 넘길건가에 대한 계산
 
     //패딩주면 반쪼가리 가능
-    const CONTAINER_STYLE = {
-        ...containerStyle,
-        position: "relative",
-        overflow: "hidden",
-        
-        // height : 'auto'
-        // padding:' 0 15rem'
-    };
 
     // console.log(children)
     const SLIDER_STYLE = {
         position: "relative",
-     
+
         width: `${SLIDER_WIDTH}%`,
         left: " 50%",
         transform: "translateX(-50%)",
-    };
-
-    const ITEM_STYLE = {
-        ...itemStyle,
-        width: `${ITEM_WIDTH}%`, 
-        // border: "1px solid white",
-        display: "inline-block",
-    };
-
-    const BUTTON_STYLE = {
-        ...buttonStyle,
-    };
-
-    const ANIMATION_STYLE = {
-        transition: slideitem.className === "current" ? "none" : `all ${delay / 1000}s`,
-        transform: slideitem.className === "current" ? `translateX(0%)` : slideitem.className === "active-prev" ? `translateX(${MOVE_LENGTH}%)` : `translateX(${-MOVE_LENGTH}%)`,
     };
 
     const DOT_BOX_STYLE = {
@@ -59,24 +69,30 @@ function Slider(props) {
     };
     // + slideitem.className
     return (
-        <div className="slider-container" style={CONTAINER_STYLE}>
-            <div className={"slider-box " + slideitem.className} style={{ ...ANIMATION_STYLE }}>
-                <div className={"slider "} style={{ ...SLIDER_STYLE }}>
+        <SliderContainer className="slider-container" style={containerStyle}>
+            <SliderBox className={"slider-box " + slideitem.className} slideitem={slideitem} delay={delay} MOVE_LENGTH={MOVE_LENGTH}>
+                <Slide className={"slider "} SLIDER_WIDTH={SLIDER_WIDTH}>
                     {slideitem.nowlist.map((item, index) => {
                         const noPaddingClassName = viewCount >= index ? "prev-item" : index > 2 * viewCount ? "next-item" : "current-item";
                         const paddingClassName = viewCount > index ? "prev-item" : index > 2 * viewCount + 1 ? "next-item" : "current-item";
                         return (
-                            <div className={`slide-item ${CONTAINER_STYLE.padding ? paddingClassName : noPaddingClassName}`} style={{ ...ITEM_STYLE } } key={index}>
+                            <SlideItem className={`slide-item ${containerStyle.padding ? paddingClassName : noPaddingClassName}`} style={itemStyle} ITEM_WIDTH={ITEM_WIDTH} key={index}>
                                 <Component item={item} index={index}></Component>
-                            </div>
+                            </SlideItem>
                         );
                     })}
-                </div>
+                </Slide>
+            </SliderBox>
+            <ButtonStyle onClick={slideitem.nextButton} style={{ ...buttonStyle, right: "0" }}></ButtonStyle>
+            <ButtonStyle onClick={slideitem.prevButton} style={{ ...buttonStyle, left: "0" }}></ButtonStyle>
+            <div style={DOT_BOX_STYLE}>
+                <ul style={{ display: "flex", justifyContent: "center" }}>
+                    {slideitem.dot?.map((item, index) => (
+                        <li key={index}>{item}</li>
+                    ))}
+                </ul>
             </div>
-            <button onClick={slideitem.nextButton} style={{ ...BUTTON_STYLE, right: "0" }}></button>
-            <button onClick={slideitem.prevButton} style={{ ...BUTTON_STYLE, left: "0" }}></button>
-            <div style={DOT_BOX_STYLE}><ul style={{display:'flex',justifyContent:'center'}}>{slideitem.dot?.map((item,index)=><li key={index}>{item}</li>)}</ul></div>
-        </div>
+        </SliderContainer>
     );
 }
 

@@ -14,7 +14,19 @@ export default (app) => {
     route.use(isAccessTokenValid);
     route.use(isReissueAccessToken);
     route.get("/", async (req, res, next) => {
-       
+        if(req.query.id){
+            console.log(req.query)
+            const MovieServiceInstance = new MovieService();
+            const {trailerURL} = await MovieServiceInstance.getMovieTrailer(req.query.id)
+            return res.status(200).json({
+                trailerURL
+            })
+
+
+
+
+        }
+      
         const MovieServiceInstance = new MovieService();
 
         const { movieGenreList } = await MovieServiceInstance.getMovieGenresList();
