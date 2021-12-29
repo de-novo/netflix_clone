@@ -26,7 +26,7 @@ function Regform() {
             localStorage.setItem('ACCESS_TOKEN', JSON.stringify(data.accessToken));
             return navigate("/login");
         }
-        return navigate("/signup");
+        else{return navigate("/signup");}
     };
     const { inputs, setInputs, onChange, onSubmit } = useInput("/api/signup/regform", validator, isUser);
 

@@ -5,6 +5,8 @@ import { Counter as CounterModel } from "../../models/counter.js";
 import { UserService } from "../../services/user.js";
 import { AuthService } from "../../services/auth.js";
 
+import {checkUser} from '../middlewares/checkUser.js'
+
 const route = Router();
 
 export default (app) => {

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Button_100(props) {
-    const path = props.to? props.to : '/'
+    const path = props.to;
     const className = props.className ? props.className : "medium"
     const style = {
         color: "white",
@@ -18,7 +18,13 @@ function Button_100(props) {
     };
     return (
         <div>
-            <button className={className} style={style} onClick={props.onSubmit}><Link to={path}>{props.content}</Link></button>
+            {path?
+            <button className={className} style={style} onClick={props.onSubmit}><Link to={path}>{props.content}</Link></button>:
+            <button className={className} style={style} onClick={props.onSubmit}>{props.content}</button>
+            
+        
+        }
+            {/* <button className={className} style={style} onClick={props.onSubmit}><Link to={path}>{props.content}</Link></button> */}
         </div>
     );
 }

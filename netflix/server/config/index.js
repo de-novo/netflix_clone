@@ -10,7 +10,7 @@ export default {
     port: parseInt(process.env.PORT, 10),
     // mongoDB URL
     DB_URL: process.env.DB_URL,
-
+    MOVIEAPI : process.env.myAPI, 
 
     api: {
         prefix: "/api",

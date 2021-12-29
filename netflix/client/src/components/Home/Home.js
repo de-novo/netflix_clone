@@ -1,115 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "../Atom/Nav";
 
-
 import Slider from "../api/Slider";
-
+import axios from "axios";
 const Item = (props) => {
     return (
         <div>
-            {props.item?.id}
+            <img style={{ borderRadius:'5px',}} src={`https://image.tmdb.org/t/p/original/${props.item?.backdrop_path}`}></img>
+            <h3>{props.item?.title}</h3>
             <br />
-            {props?.index}
+            {/* {props.item?.overview} */}
             {/* {props.index} */}
         </div>
     );
 };
 
-const movieList = [
-    {
-        id: 1,
-        name: "1",
-        img: "gdgd",
-    },
-    {
-        id: 2,
-        name: "2",
-        img: "gdgd",
-    },
-    {
-        id: 3,
-        name: "3",
-        img: "gdgd",
-    },
-    {
-        id: 4,
-        name: "4",
-        img: "gdgd",
-    },
-    {
-        id: 5,
-        name: "5",
-        img: "gdgd",
-    },
-    {
-        id: 6,
-        name: "6",
-        img: "gdgd",
-    },
-    {
-        id: 7,
-        name: "7",
-        img: "gdgd",
-    },
-    {
-        id: 8,
-        name: "8",
-        img: "gdgd",
-    },
-    {
-        id: 9,
-        name: "9",
-        img: "gdgd",
-    },
-    {
-        id: 10,
-        name: "10",
-        img: "gdgd",
-    },
-    {
-        id: 11,
-        name: "11",
-        img: "gdgd",
-    },
-    {
-        id: 12,
-        name: "12",
-        img: "gdgd",
-    },
-    {
-        id: 13,
-        name: "13",
-        img: "gdgd",
-    },
-    {
-        id: 14,
-        name: "14",
-        img: "gdgd",
-    },
-    {
-        id: 15,
-        name: "15",
-        img: "gdgd",
-    },
-    {
-        id: 16,
-        name: "16",
-        img: "gdgd",
-    },
-    {
-        id: 17,
-        name: "17",
-        img: "gdgd",
-    },
-    {
-        id: 18,
-        name: "18",
-        img: "gdgd",
-    },
-];
-
 function Home() {
-
+    const config = {
+        headers: {
+            authorization: `Bearer ${JSON.parse(localStorage.getItem("ACCESS_TOKEN"))}`,
+        },
+    };
+    const [movieList, setMovieList] = useState();
+    const [movieGenreList, setMovieGenreList] = useState();
+    useEffect(() => {
+        console.log(config.headers);
+        axios.get("/api/home", config).then((res) => {
+            console.log(res.data);
+            if (res.data.accessToken) {
+                localStorage.setItem("ACCESS_TOKEN", JSON.stringify(res.data.accessToken));
+            }
+            if (res.data.movieList) {
+                setMovieList(res.data.movieList);
+            }
+            if (res.data.movieGenre) {
+                setMovieGenreList(movieGenreList);
+            }
+        });
+    }, []);
     const slideSetting = {
         target: movieList,
         viewCount: 5,
@@ -117,7 +45,14 @@ function Home() {
         containerStyle: {
             backgroundColor: "black",
             height: "auto",
-            padding:'0 clamp(0px, 4%, 7rem)'
+            padding: "0 clamp(0px, 4%, 7rem)",
+        },
+        itemStyle: {
+            borderRadius:'2px',
+            padding: "0 0.8rem",
+            "&:hover": {
+                transform: "transform: translateY(-50%);",
+            },
         },
         passNum: 5,
         Component: Item,
@@ -130,8 +65,6 @@ function Home() {
                 <h2>박깉애 님이 시청 중인 콘첸츠</h2>
                 <Slider {...slideSetting}></Slider>
             </div>
-     
-           
         </div>
     );
 }

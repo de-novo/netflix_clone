@@ -18,20 +18,17 @@ const EmailVlidator = (Email) => {
 function Signup() {
     const navigate = useNavigate();
     const isLogin = (data) => {
-        if(data.isUser===false){
-            alert(data.message)
-            return navigate("/singup")
+        if (data.isUser === false) {
+            alert(data.message);
+            return navigate("");
         }
         console.log(data.isLogin);
-        if (data.isLogin&&data.accessToken) {
-            
-            localStorage.setItem('ACCESS_TOKEN', JSON.stringify(data.accessToken));
+        if (data.isLogin && data.accessToken) {
+            localStorage.setItem("ACCESS_TOKEN", JSON.stringify(data.accessToken));
             return navigate("/home");
-        }else{
-            alert(data.message)
+        } else {
+            alert(data.message);
         }
-      
-     
     };
     const { inputs, setInputs, onChange, onSubmit } = useInput("/api/login", validator, isLogin);
     useEffect(() => {
@@ -79,7 +76,7 @@ function Signup() {
                 <Input100 attr={{ id: "login_email", name: "Email" }} onChange={onChange} inputs={inputs ? inputs : ""} label={"이메일 주소 또는 전화번호"}></Input100>
                 <Input100 attr={{ id: "login_pw", name: "password" }} onChange={onChange} inputs={inputs ? inputs : ""} label={"비밀번호"}></Input100>
 
-                <Button100 content={"로그인"} onSubmit={onSubmit} to={"/api/Home"}></Button100>
+                <Button100 content={"로그인"} onSubmit={onSubmit}></Button100>
                 {/* <button class="login-form-button medium bold">로그인</button> */}
 
                 <div className="login-form-save">
