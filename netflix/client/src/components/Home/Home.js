@@ -1,9 +1,10 @@
-import React, { Children, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Nav from "../Atom/Nav";
 
 import Slider from "../api/Slider";
 import axios from "axios";
 import styled from "styled-components";
+import { TokenContext } from "../api/TokenContext";
 const ItemComponent = styled.div`
     z-index: 4;
     position: relative;
@@ -45,38 +46,36 @@ const ItemComponent = styled.div`
 `;
 
 const Item = (props) => {
-    const [trailerURL, setTrailerURL] = useState();
-    const trailer = () => {
+    const [trailerURL, setTrailerURL] = useState('');
+    const { token, setToken } = useContext(TokenContext);
+
+
+    //나중에 클래스로 나눠야할듯 MovieService 
+    const trailer = async () => {
+        
         const config = {
             headers: {
-                authorization: `Bearer ${JSON.parse(localStorage.getItem("ACCESS_TOKEN"))}`,
+                authorization: `Bearer ${token}`,
             },
             params: { ...props.item },
         };
 
-        axios.get("/api/home", config, { ...props.item }).then((res) => {
+         await axios.get("/api/home", config, { ...props.item }).then((res) => {
             if (res.data.trailerURL) {
                 console.log(res.data.trailerURL);
-                return setTrailerURL(res.data.trailerURL);
+                return setTrailerURL(`${res.data.trailerURL}?autoplay=1&mute=1`);
             }
             if (res.data.accessToken) {
-                return localStorage.setItem("ACCESS_TOKEN", JSON.stringify(res.data.accessToken));
+                return setToken(res.data.accessToken);
             }
         });
+    
     };
-
-   const Url = ()=>{
-        if(!trailerURL){
-            return Url
-        }
-
-    return `${trailerURL}?autoplay=1&mute=1`
-   }
-
+  
     return (
         <ItemComponent onMouseEnter={trailer}>
             <img className="thumnail" src={`https://image.tmdb.org/t/p/original/${props.item?.backdrop_path}`} alt={props.item?.title}></img>
-            <iframe className="trailer" src={Url()} frameborder="0" allow="autoplay" allowfullscreen ng-show="showvideo"   mozallowfullscreen  allowfullscreen ></iframe>
+            <iframe className="trailer" style={{border:'none'}} src={trailerURL}   allow="autoplay" ng-show="showvideo"></iframe>
             <h3>{props.item?.title}</h3>
             <div className="overview">{props.item?.overview}</div>
             {/* {props.index} */}
@@ -85,17 +84,15 @@ const Item = (props) => {
 };
 
 function Home() {
-    const config = {
-        headers: {
-            authorization: `Bearer ${JSON.parse(localStorage.getItem("ACCESS_TOKEN"))}`,
-        },
-    };
-
     const [movieList, setMovieList] = useState();
     const [movieGenreList, setMovieGenreList] = useState();
 
     useEffect(() => {
-        console.log(config.headers);
+        const config = {
+            headers: {
+                authorization: `Bearer ${JSON.parse(localStorage.getItem("ACCESS_TOKEN"))}`,
+            },
+        };
         axios.get("/api/home", config).then((res) => {
             console.log(res.data);
             if (res.data.accessToken) {
@@ -105,7 +102,7 @@ function Home() {
                 setMovieList(res.data.movieList);
             }
             if (res.data.movieGenre) {
-                setMovieGenreList(movieGenreList);
+                setMovieGenreList(res.data.movieGenre);
             }
         });
     }, []);
@@ -133,13 +130,13 @@ function Home() {
         <div>
             <Nav></Nav>
             <div className="movie-container ">
-                <h2>박깉애 님이 시청 중인 콘첸츠</h2>
+                {/* <h2>박깉애 님이 시청 중인 콘첸츠</h2>
                 <Slider {...slideSetting}></Slider>
                 <h2>박깉애 님이 시청 중인 콘첸츠</h2>
                 <Slider {...slideSetting}></Slider> <h2>박깉애 님이 시청 중인 콘첸츠</h2>
                 <Slider {...slideSetting}></Slider> <h2>박깉애 님이 시청 중인 콘첸츠</h2>
                 <Slider {...slideSetting}></Slider> <h2>박깉애 님이 시청 중인 콘첸츠</h2>
-                <Slider {...slideSetting}></Slider>
+                <Slider {...slideSetting}></Slider> */}
             </div>
         </div>
     );
