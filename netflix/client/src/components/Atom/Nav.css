@@ -63,7 +63,7 @@
 
 .menu-btn{
     position: relative;
-   
+    
     transform: translateY(-12%);
     padding-left: 0.5rem;
     outline: none;
@@ -101,4 +101,8 @@
     .menu-box{
         display: none;
     }
+}
+
+.asdf{
+    position: relative;
 }

@@ -11,6 +11,7 @@ const ItemComponent = styled.div`
     transition: all 0.5s;
     background-color: black;
     border-radius: 5px 5px 0 0;
+
     > img {
         border-radius: 5px;
     }
@@ -18,8 +19,18 @@ const ItemComponent = styled.div`
         font-size: 2rem;
     }
     > .trailer {
-        width: 100%;
         display: none;
+        overflow: hidden;
+        height: 0;
+        padding-bottom: 56.25%;
+        position: relative;
+        > iframe {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
     }
     > .overview {
         border: 1px solid black;
@@ -30,7 +41,7 @@ const ItemComponent = styled.div`
         z-index: 5;
 
         transform: scale(1.5);
-        float: none;
+
         > .trailer {
             display: block;
         }
@@ -46,13 +57,11 @@ const ItemComponent = styled.div`
 `;
 
 const Item = (props) => {
-    const [trailerURL, setTrailerURL] = useState('');
+    const [trailerURL, setTrailerURL] = useState("");
     const { token, setToken } = useContext(TokenContext);
 
-
-    //나중에 클래스로 나눠야할듯 MovieService 
+    //나중에 클래스로 나눠야할듯 MovieService
     const trailer = async () => {
-        
         const config = {
             headers: {
                 authorization: `Bearer ${token}`,
@@ -60,7 +69,7 @@ const Item = (props) => {
             params: { ...props.item },
         };
 
-         await axios.get("/api/home", config, { ...props.item }).then((res) => {
+        await axios.get("/api/home", config, { ...props.item }).then((res) => {
             if (res.data.trailerURL) {
                 console.log(res.data.trailerURL);
                 return setTrailerURL(`${res.data.trailerURL}?autoplay=1&mute=1`);
@@ -69,13 +78,21 @@ const Item = (props) => {
                 return setToken(res.data.accessToken);
             }
         });
-    
     };
-  
+
     return (
         <ItemComponent onMouseEnter={trailer}>
             <img className="thumnail" src={`https://image.tmdb.org/t/p/original/${props.item?.backdrop_path}`} alt={props.item?.title}></img>
-            <iframe className="trailer" style={{border:'none'}} src={trailerURL}   allow="autoplay" ng-show="showvideo"></iframe>
+            <div className="trailer">
+                <iframe
+                    src={trailerURL}
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+            </div>
+
             <h3>{props.item?.title}</h3>
             <div className="overview">{props.item?.overview}</div>
             {/* {props.index} */}
@@ -118,9 +135,6 @@ function Home() {
         itemStyle: {
             borderRadius: "2px",
             padding: "0 0.8rem",
-            "&:hover": {
-                transform: "transform: translateY(-50%);",
-            },
         },
         passNum: 5,
         Component: Item,
@@ -130,13 +144,13 @@ function Home() {
         <div>
             <Nav></Nav>
             <div className="movie-container ">
-                {/* <h2>박깉애 님이 시청 중인 콘첸츠</h2>
+                <h2>박깉애 님이 시청 중인 콘첸츠</h2>
                 <Slider {...slideSetting}></Slider>
                 <h2>박깉애 님이 시청 중인 콘첸츠</h2>
                 <Slider {...slideSetting}></Slider> <h2>박깉애 님이 시청 중인 콘첸츠</h2>
                 <Slider {...slideSetting}></Slider> <h2>박깉애 님이 시청 중인 콘첸츠</h2>
                 <Slider {...slideSetting}></Slider> <h2>박깉애 님이 시청 중인 콘첸츠</h2>
-                <Slider {...slideSetting}></Slider> */}
+                <Slider {...slideSetting}></Slider>
             </div>
         </div>
     );

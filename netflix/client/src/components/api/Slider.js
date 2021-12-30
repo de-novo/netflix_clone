@@ -8,7 +8,7 @@ const SliderContainer = styled.div`
 
     position : relative;
     &:hover {
-        z-index: 4;
+        z-index: 2;
     }
 `;
 const SliderBox = styled.div`
