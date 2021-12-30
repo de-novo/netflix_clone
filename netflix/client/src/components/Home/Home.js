@@ -59,7 +59,7 @@ const ItemComponent = styled.div`
 const Item = (props) => {
     const [trailerURL, setTrailerURL] = useState("");
     const { token, setToken } = useContext(TokenContext);
-
+    const [mouseHandler, setMouseHandler] = useState(false);
     //나중에 클래스로 나눠야할듯 MovieService
     const trailer = async () => {
         const config = {
@@ -78,19 +78,21 @@ const Item = (props) => {
                 return setToken(res.data.accessToken);
             }
         });
+        setMouseHandler(!mouseHandler);
     };
 
     return (
-        <ItemComponent onMouseEnter={trailer}>
+        <ItemComponent
+            onMouseEnter={trailer}
+            onMouseLeave={() => {
+                setMouseHandler(!mouseHandler);
+            }}
+        >
             <img className="thumnail" src={`https://image.tmdb.org/t/p/original/${props.item?.backdrop_path}`} alt={props.item?.title}></img>
             <div className="trailer">
-                <iframe
-                    src={trailerURL}
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                ></iframe>
+                {mouseHandler ? (
+                    <iframe src={trailerURL} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                ) : null}
             </div>
 
             <h3>{props.item?.title}</h3>
