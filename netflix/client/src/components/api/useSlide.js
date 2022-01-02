@@ -46,8 +46,8 @@ function useSlide(target = ["리스트를 입력해주세요", "리스트를 입
         // let nowPageIndex = index > movieCount ? 0 : index / passNum;
         let nowPageIndex = index > movieCount ? 0 : index / passNum;
         // let nowPageIndex = index / passNum;
-        console.log('nowPageIndex',nowPageIndex,'movieCount',movieCount);
-        console.log('index',index);
+        // console.log('nowPageIndex',nowPageIndex,'movieCount',movieCount);
+        // console.log('index',index);
         for (let i = 0; i < pageNum; i++) {
             if (index >= 0) {
                 if (i === nowPageIndex) {

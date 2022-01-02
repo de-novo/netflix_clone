@@ -70,11 +70,11 @@ a:hover {
 .movie-container {
     justify-content: center;
     width: 100%;
-    /* position: relative; */
+
     background-color: black;
     margin: 4.39rem 0 0 0;
-    z-index: -1;
-    float: left;
+    z-index: -100000000;
+    
    
 }
 .movie-container > h2 {

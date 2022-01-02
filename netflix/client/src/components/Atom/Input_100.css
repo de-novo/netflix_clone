@@ -15,7 +15,7 @@
 .login-form-input > input:valid + label {
     font-size: 1.2rem;
     transform: translateY(-150%);
-
+    
     font-weight: 600;
     /* background-color: blueviolet; */
 }

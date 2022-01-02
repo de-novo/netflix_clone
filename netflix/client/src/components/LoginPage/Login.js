@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useContext } from "react";
 import axios from "axios";
 import useInput from "../api/useInput";
-
+import { TokenContext } from "../api/TokenContext";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../Atom/Logo";
 import Button100 from "../Atom/Button_100";
@@ -16,6 +16,7 @@ const EmailVlidator = (Email) => {
     return regEmail.test(Email);
 };
 function Signup() {
+    const { token, setToken } = useContext(TokenContext);
     const navigate = useNavigate();
     const isLogin = (data) => {
         if (data.isUser === false) {
@@ -24,7 +25,7 @@ function Signup() {
         }
         console.log(data.isLogin);
         if (data.isLogin && data.accessToken) {
-            localStorage.setItem("ACCESS_TOKEN", JSON.stringify(data.accessToken));
+            setToken(data.accessToken);
             return navigate("/home");
         } else {
             alert(data.message);

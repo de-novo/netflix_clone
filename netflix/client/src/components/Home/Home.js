@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Nav from "../Atom/Nav";
-
+import { useNavigate } from "react-router-dom";
 import Slider from "../api/Slider";
 import axios from "axios";
 import styled from "styled-components";
@@ -61,6 +61,7 @@ const Item = (props) => {
     const { token, setToken } = useContext(TokenContext);
     const [mouseHandler, setMouseHandler] = useState(false);
     //나중에 클래스로 나눠야할듯 MovieService
+
     const trailer = async () => {
         const config = {
             headers: {
@@ -91,7 +92,7 @@ const Item = (props) => {
             <img className="thumnail" src={`https://image.tmdb.org/t/p/original/${props.item?.backdrop_path}`} alt={props.item?.title}></img>
             <div className="trailer">
                 {mouseHandler ? (
-                    <iframe src={trailerURL} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                    <iframe src={trailerURL} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
                 ) : null}
             </div>
 
@@ -101,29 +102,40 @@ const Item = (props) => {
         </ItemComponent>
     );
 };
-
+//로그인 확인 
 function Home() {
     const [movieList, setMovieList] = useState();
     const [movieGenreList, setMovieGenreList] = useState();
+    const { token, setToken } = useContext(TokenContext);
+    const navigate = useNavigate();
+    useEffect(()=>{
+        console.log(token)
+        if(!token){
+            navigate('/')
+        }
+    },[token,navigate])
 
     useEffect(() => {
-        const config = {
-            headers: {
-                authorization: `Bearer ${JSON.parse(localStorage.getItem("ACCESS_TOKEN"))}`,
-            },
-        };
-        axios.get("/api/home", config).then((res) => {
-            console.log(res.data);
-            if (res.data.accessToken) {
-                localStorage.setItem("ACCESS_TOKEN", JSON.stringify(res.data.accessToken));
-            }
-            if (res.data.movieList) {
-                setMovieList(res.data.movieList);
-            }
-            if (res.data.movieGenre) {
-                setMovieGenreList(res.data.movieGenre);
-            }
-        });
+        console.log('Home',token)
+      
+            const config = {
+                headers: {
+                    authorization: `Bearer ${JSON.parse(localStorage.getItem("ACCESS_TOKEN"))}`,
+                },
+            };
+            axios.get("/api/home", config).then((res) => {
+                console.log(res.data);
+                if (res.data.accessToken) {
+                    localStorage.setItem("ACCESS_TOKEN", JSON.stringify(res.data.accessToken));
+                }
+                if (res.data.movieList) {
+                    setMovieList(res.data.movieList);
+                }
+                if (res.data.movieGenre) {
+                    setMovieGenreList(res.data.movieGenre);
+                }
+            });
+        
     }, []);
     const slideSetting = {
         target: movieList,

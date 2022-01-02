@@ -1,60 +1,99 @@
-import React from "react";
+import axios from "axios";
+import React, { useContext } from "react";
 import styled from "styled-components";
-
+import { useNavigate } from "react-router-dom";
+import { TokenContext } from "../api/TokenContext";
+//원래는 프로필 박스 컴포넌트 만들어서 대입해야함 하지만 귀찮음.
+// 페이크로 화살표 div 박스 넣어서 margin 같이 넣어줘야함
 const UserContainer = styled.div`
+    transition: display 0s, opacity 0.2s;
 
+    > div {
+        display: none;
+    }
+    opacity: 0;
     position: absolute;
-    transform: translateY(10px);
-    right:0;
-    background-color:white;
+    height: 0;
+    right: 0;
+    background-color: #111;
 
-    width:15rem;
+    z-index: 5;
+    width: 15rem;
 `;
 
 const ProfileBox = styled.div`
-    position: absolute;
-    transform: translateY(10px);
-    right:0;
-    background-color:white;
-    height:15rem;
-    width:100%
+    text-align: left;
+    right: 0;
+
+    width: 100%;
 `;
 
+const Profile = styled.div`
+    position: relative;
 
+    > div {
+        border-radius: 5px;
+        display: inline-block;
+        width: 3rem;
+        height: 3rem;
+        background-color: black;
+        margin-right: 0.8rem;
+    }
+    > span {
+        display: inline-block;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    &:hover {
+        border: 1px solid white;
+    }
+    font-size: 1.6rem;
+
+    padding: 0.8rem;
+`;
 
 const MenuBox = styled.div`
-
-    
-    bottom:0;
-    background-color:blue;
-    height:5rem;
-    width:100%
+    width: 100%;
 `;
 
-
 const Menu = styled.button`
-
-    width:100%;
-    height:2rem;
-    margin: 0;
-    background-color:red;
-    outline: none;
-    border: none;
-`
+    font-size: 1.2rem;
+    width: 100%;
+    color: white;
+    margin: 0 0;
+    padding: 0.4rem;
+    background-color: #111;
+    outline: 0;
+    text-align: left;
+    border: 0;
+    cursor: pointer;
+`;
 
 function UserTab() {
-    return <UserContainer>
-        <MenuBox>
-            <Menu></Menu>
-            <Menu></Menu>
-            <Menu></Menu>
-            <Menu></Menu>
-            <Menu></Menu>
-            <Menu></Menu>
-            <Menu></Menu>
-            <Menu></Menu>
-        </MenuBox>
-    </UserContainer>;
+    const navigate = useNavigate();
+    const onLogout = (e) => {
+        e.preventDefault();
+        navigate("/logout");
+    };
+    return (
+        <UserContainer className="userMenu-Container">
+            <ProfileBox>
+                <Profile>
+                    <div></div>
+                    <span>박준혁</span>
+                </Profile>
+                <Profile>
+                    <div></div>
+                    <p></p>
+                </Profile>
+            </ProfileBox>
+            <MenuBox>
+                <Menu>계정</Menu>
+                <Menu>고객센터</Menu>
+                <Menu onClick={onLogout}>넷플릭스에서 로그아웃</Menu>
+            </MenuBox>
+        </UserContainer>
+    );
 }
 
 export default UserTab;

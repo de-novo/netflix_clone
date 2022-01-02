@@ -1,9 +1,12 @@
-import React from "react";
+import React,{useContext} from "react";
 import Logo from "./Logo";
 import "./Nav.css";
 import { Link } from "react-router-dom";
 import UserTab from "./UserTab";
+import { TokenContext } from "../api/TokenContext";
 function Nav() {
+
+    
     return (
         <header className="home-header">
             <div className="header-left">
@@ -58,7 +61,7 @@ function Nav() {
                 <div className="asdf">
                     <div className="header-user">
                         <div className="user"></div>
-                        <div>
+                        <div className="user-arrow">
                             <svg width="6.6" height="5" viewBox="0 0 107 81" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M49.0947 78.6672C49.5855 79.3866 50.2423 79.9749 51.0085 80.3813C51.7747 80.7877 52.6272 81 53.4927 81C54.3583 81 55.2108 80.7877 55.977 80.3813C56.7432 79.9749 57.3999 79.3866 57.8908 78.6672L106.045 8.47202C106.602 7.66238 106.929 6.71407 106.99 5.73012C107.05 4.74617 106.843 3.76421 106.39 2.89093C105.936 2.01765 105.254 1.28645 104.418 0.776781C103.582 0.267109 102.623 -0.00154615 101.647 6.69367e-06H5.33898C4.36436 0.00406942 3.40928 0.276179 2.57645 0.787072C1.74362 1.29797 1.06454 2.02831 0.61225 2.89957C0.159957 3.77083 -0.0484382 4.75003 0.00947451 5.73188C0.0673872 6.71373 0.389417 7.66107 0.940932 8.47202L49.0947 78.6672Z"
