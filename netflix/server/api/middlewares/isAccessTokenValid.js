@@ -5,6 +5,9 @@ import { User as userModel } from "../../models/user.js";
 const isAccessTokenValid = async (req, res, next) => {
     try {
         console.log('isAccessTokenValid 시도')
+        console.log('=======================================')
+        console.log('req.headers.authorization:', req.headers.authorization)
+        console.log('=======================================')
         if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
             let token = req.headers.authorization.split(" ")[1];
             console.log('isAccessTokenValid token받아오기 : ', token)

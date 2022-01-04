@@ -8,14 +8,17 @@ html {
     list-style: none;
     padding: 0;
 }
-
+.App {
+    height: auto;
+}
 .App > div {
     background-color: black;
     overflow: hidden;
     position: absolute;
     top: 0;
-    /* height: 100%; */
+    height: auto;
     width: 100%;
+
 }
 body {
     color: white;

@@ -4,7 +4,8 @@ import "./Nav.css";
 import { Link } from "react-router-dom";
 import UserTab from "./UserTab";
 import { TokenContext } from "../api/TokenContext";
-function Nav() {
+import EditProfile from "../EditProfile";
+function Nav({setEditProfile}) {
 
     
     return (
@@ -70,7 +71,7 @@ function Nav() {
                             </svg>
                         </div>
                     </div>
-                    <UserTab></UserTab>
+                    <UserTab setEditProfile={setEditProfile}></UserTab>
                 </div>
             </div>
         </header>

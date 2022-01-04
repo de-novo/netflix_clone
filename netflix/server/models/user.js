@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
     password: String,
     data: { checkPrivacy: Boolean, checkAlram: Boolean, salt: String },
     // data: Object
+    profile:[{name:String}]
 });
 
 userSchema.statics.deleteUser = async function (conditions) {

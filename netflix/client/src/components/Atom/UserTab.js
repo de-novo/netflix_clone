@@ -1,8 +1,9 @@
 import axios from "axios";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { TokenContext } from "../api/TokenContext";
+import EditProfile from "../EditProfile";
 //원래는 프로필 박스 컴포넌트 만들어서 대입해야함 하지만 귀찮음.
 // 페이크로 화살표 div 박스 넣어서 margin 같이 넣어줘야함
 const UserContainer = styled.div`
@@ -69,30 +70,35 @@ const Menu = styled.button`
     cursor: pointer;
 `;
 
-function UserTab() {
+function UserTab({setEditProfile}) {
+
     const navigate = useNavigate();
     const onLogout = (e) => {
         e.preventDefault();
         navigate("/logout");
     };
     return (
-        <UserContainer className="userMenu-Container">
-            <ProfileBox>
-                <Profile>
-                    <div></div>
-                    <span>박준혁</span>
-                </Profile>
-                <Profile>
-                    <div></div>
-                    <p></p>
-                </Profile>
-            </ProfileBox>
-            <MenuBox>
-                <Menu>계정</Menu>
-                <Menu>고객센터</Menu>
-                <Menu onClick={onLogout}>넷플릭스에서 로그아웃</Menu>
-            </MenuBox>
-        </UserContainer>
+        <>
+    
+            <UserContainer className="userMenu-Container">
+                <ProfileBox>
+                    <Profile>
+                        <div></div>
+                        <span>박준혁</span>
+                    </Profile>
+                    <Profile>
+                        <div></div>
+                        <p></p>
+                    </Profile>
+                    <Menu onClick={()=>{setEditProfile(true)}}>프로필관리</Menu>
+                </ProfileBox>
+                <MenuBox>
+                    <Menu>계정</Menu>
+                    <Menu>고객센터</Menu>
+                    <Menu onClick={onLogout}>넷플릭스에서 로그아웃</Menu>
+                </MenuBox>
+            </UserContainer>
+        </>
     );
 }
 

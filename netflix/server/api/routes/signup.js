@@ -56,7 +56,7 @@ export default (app) => {
         console.log(password, "/", salt);
         const _id = counter.count + 1;
 
-        const signupData = { ...req.body, _id: _id, password: password, data: { checkPrivacy: req.body.checkPrivacy, checkAlram: req.body.checkAlram, salt: salt } };
+        const signupData = { ...req.body, _id: _id, password: password, data: { checkPrivacy: req.body.checkPrivacy, checkAlram: req.body.checkAlram, salt: salt },proflie:[] };
         delete signupData.checkPrivacy;
         delete signupData.checkAlram;
         let UserServiceInstance = new UserService({ userModel });

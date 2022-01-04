@@ -13,9 +13,9 @@ export class UserService {
         const refreshToken = await userRecord.generateRefreshToken();
 
         
-        console.log("userRecord:", userRecord);
-        console.log("accessToken:", accessToken);
-        console.log("refreshToken:", refreshToken);
+        // console.log("userRecord:", userRecord);
+        // console.log("accessToken:", accessToken);
+        // console.log("refreshToken:", refreshToken);
         return { userRecord, accessToken, refreshToken };
     }
     async findByNickName(nickName) {

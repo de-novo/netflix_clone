@@ -29,7 +29,7 @@ function useInput(url, validation,go) {
             return alert("입력값을 확인해주세요");
         }
         axios
-            .post(url, inputs)
+            .post(url,  { proflie: inputs })
             .then((res) => {
                 console.log(res.data)
                 onReset();

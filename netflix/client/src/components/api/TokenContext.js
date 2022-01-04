@@ -24,8 +24,13 @@ const TokenContextProvider = ({ children }) => {
         localStorage.setItem("ACCESS_TOKEN", JSON.stringify(TOKEN));
         TOKEN && setToken(TOKEN);
     };
+    const config = {
+        headers: {
+            authorization: `Bearer ${token}`,
+        },
+    };
 
-    return <TokenContext.Provider value={{ token, setToken: saveToken }}>{children}</TokenContext.Provider>;
+    return <TokenContext.Provider value={{ token, setToken: saveToken ,config }}>{children}</TokenContext.Provider>;
 };
 
 

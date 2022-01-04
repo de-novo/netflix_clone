@@ -5,11 +5,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import TokenContextProvider from "./components/api/TokenContext.js";
+import UserContextProvider from "./components/api/UserContext.js";
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
             <TokenContextProvider>
-                <App />
+                <UserContextProvider>
+                    <App />
+                </UserContextProvider>
             </TokenContextProvider>
         </BrowserRouter>
     </React.StrictMode>,

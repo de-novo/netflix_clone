@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Routes, Route, useNavigate ,useParams} from "react-router-dom";
+import { Routes, Route, useNavigate, useParams } from "react-router-dom";
 import { TokenContext } from "./components/api/TokenContext.js";
 
 //로그인전 main
@@ -42,8 +42,8 @@ function App() {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/signup/regform" element={<Regform />} />
                 <Route path="/home" element={<Home />} />
-                <Route path="/home/:id" element={<Home />}></Route>
-                <Route path="/logout" element={<Logout></Logout>} />
+                <Route path="/home/:id" element={<Home />} />
+                <Route path="/logout" element={<Logout />} />
             </Routes>
             {/* 로그인? 안했어? 그럼 이거봐 */}
 
