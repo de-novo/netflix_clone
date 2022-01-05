@@ -7,10 +7,10 @@ if (envFound.error) {
     throw new Error("Couldn't find .env file");
 }
 export default {
-    port: parseInt(process.env.PORT, 10),
+    port: process.env.PORT || 4000,
     // mongoDB URL
     DB_URL: process.env.DB_URL,
-    MOVIEAPI : process.env.myAPI, 
+    MOVIEAPI: process.env.myAPI,
 
     api: {
         prefix: "/api",
@@ -20,9 +20,7 @@ export default {
         level: process.env.LOG_LEVEL || "silly",
     },
 
-
-// JWT secret
-    ACCESS_TOKEN_SECRET : process.env.ACCESS_TOKEN_SECRET,
-    REFRESH_TOKEN_SECRET : process.env.REFRESH_TOKEN_SECRET,
-    
+    // JWT secret
+    ACCESS_TOKEN_SECRET: process.env.ACCESS_TOKEN_SECRET,
+    REFRESH_TOKEN_SECRET: process.env.REFRESH_TOKEN_SECRET,
 };
