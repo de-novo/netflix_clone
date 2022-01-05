@@ -1,15 +1,31 @@
-import React,{useContext} from "react";
+import React, { useContext } from "react";
 import Logo from "./Logo";
 import "./Nav.css";
 import { Link } from "react-router-dom";
 import UserTab from "./UserTab";
 import { TokenContext } from "../api/TokenContext";
 import EditProfile from "../EditProfile";
-function Nav({setEditProfile}) {
 
-    
+import styled from "styled-components";
+
+const Container = styled.div`
+    padding: 0 clamp(0px, 4%, 7rem);
+
+    width: 100%;
+    height: 6.8rem;
+    background-color: black;
+    display: flex;
+    gap: 3rem;
+    justify-content: space-between;
+
+    @media screen and (max-width: 950px) {
+        height: 4.1rem;
+    }
+`;
+
+function Nav({ setEditProfile }) {
     return (
-        <header className="home-header">
+        <Container>
             <div className="header-left">
                 <div className="header-logo">
                     <Logo to="/home"></Logo>
@@ -74,7 +90,7 @@ function Nav({setEditProfile}) {
                     <UserTab setEditProfile={setEditProfile}></UserTab>
                 </div>
             </div>
-        </header>
+        </Container>
     );
 }
 

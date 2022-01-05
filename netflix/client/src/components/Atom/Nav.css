@@ -2,16 +2,6 @@
     background-color: #b49c9c;
 }
 
-.home-header {
-    padding: 0 clamp(0px, 4%, 7rem);
-
-    width: 100%;
-    height: 6.8rem;
-    background-color: black;
-    display: flex;
-    gap: 3rem;
-    justify-content: space-between;
-}
 .header-logo {
     width: 9.25rem;
 }

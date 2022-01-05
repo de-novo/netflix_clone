@@ -41,7 +41,7 @@ export default (app) => {
 
         //극장상영중 영화
 
-        //장르별 추천영화
+        //장르별 추천영
     });
 
     route.get("/user", async (req, res) => {

@@ -13,6 +13,7 @@ import { AuthService } from "../../services/auth.js";
 // 5. pass /  refreshToken 을 기반으로 토큰 재발급
 
 const isReissueAccessToken = async (req, res, next) => {
+    console.log(req)
     console.log('isReissueAccessToken')
     if (req.user) {
         console.log('isReissueAccessToken accessToken 유효함')
@@ -20,7 +21,7 @@ const isReissueAccessToken = async (req, res, next) => {
     }
     if (!req.cookies.R_AUTH) {
         console.log('not found refreshToken  plese login  (없음)')
-        throw new Error(); //not found refreshToken ' plese login ' (없음)
+        throw new Error(' plese login ' ); //not found refreshToken ' plese login ' (없
     }
     let AuthServiceInstance = new AuthService({ userModel });
     const refreshToken = req.cookies.R_AUTH;
