@@ -7,7 +7,7 @@ if (envFound.error) {
     throw new Error("Couldn't find .env file");
 }
 export default {
-    port: process.env.PORT || 4000,
+    port: process.env.PORT || 8080,
     // mongoDB URL
     DB_URL: process.env.DB_URL,
     MOVIEAPI: process.env.myAPI,
