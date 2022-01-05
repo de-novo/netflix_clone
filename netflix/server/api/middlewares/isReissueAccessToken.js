@@ -13,7 +13,7 @@ import { AuthService } from "../../services/auth.js";
 // 5. pass /  refreshToken 을 기반으로 토큰 재발급
 
 const isReissueAccessToken = async (req, res, next) => {
-    console.log(req)
+    // console.log(req)
     console.log('isReissueAccessToken')
     if (req.user) {
         console.log('isReissueAccessToken accessToken 유효함')
