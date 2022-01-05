@@ -6,7 +6,9 @@
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "cd netflix && cd server && npm run start"
+        "start": "cd netflix && cd server && npm run start",
+        "build": "cd netflix && cd client && npm run build",
+        "heroku-postbuild": "cd netflix && cd client && npm run build"
     },
     "author": "",
     "license": "ISC",
