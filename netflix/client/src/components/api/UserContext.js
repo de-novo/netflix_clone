@@ -26,6 +26,7 @@ const UserContextProvider = ({ children }) => {
 
 
     useEffect(() => {
+        //////sdg
         const getUser = async () => {
             console.log(config)
             const user = await axios.get("/api/home/user", config).then((res) => {
