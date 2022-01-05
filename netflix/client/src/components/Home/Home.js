@@ -149,7 +149,7 @@ function Home() {
         passNum: 5,
         Component: Item,
     };
-    const title = [`${nowUser.name} 님이 시청 중인 콘텐츠`,`${nowUser.name} 님이 좋아할만한 영화`,'인기있는 콘텐츠',`상영중인 영화`,`죽기전에 한번은 봐야하는 영화`]
+    const title = [`${nowUser?.name} 님이 시청 중인 콘텐츠`,`${nowUser?.name} 님이 좋아할만한 영화`,'인기있는 콘텐츠',`상영중인 영화`,`죽기전에 한번은 봐야하는 영화`]
     return (
         <div>
             {editProfile ? <EditProfile setEditProfile={setEditProfile}></EditProfile> : null}
