@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { TokenContext } from "../api/TokenContext";
+import { UserContext } from "../api/UserContext";
 import EditProfile from "../EditProfile";
 //원래는 프로필 박스 컴포넌트 만들어서 대입해야함 하지만 귀찮음.
 // 페이크로 화살표 div 박스 넣어서 margin 같이 넣어줘야함
@@ -71,7 +71,7 @@ const Menu = styled.button`
 `;
 
 function UserTab({setEditProfile}) {
-
+    const { user,setNowUser } = useContext(UserContext)
     const navigate = useNavigate();
     const onLogout = (e) => {
         e.preventDefault();
@@ -82,14 +82,14 @@ function UserTab({setEditProfile}) {
     
             <UserContainer className="userMenu-Container">
                 <ProfileBox>
-                    <Profile>
+                    {user?.map((item,index)=>{
+                        return  <Profile key={index} onClick={()=>setNowUser(item)}>
                         <div></div>
-                        <span>박준혁</span>
+                        <span>{item.name}</span>
                     </Profile>
-                    <Profile>
-                        <div></div>
-                        <p></p>
-                    </Profile>
+                    })}
+                   
+                    
                     <Menu onClick={()=>{setEditProfile(true)}}>프로필관리</Menu>
                 </ProfileBox>
                 <MenuBox>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import axios from "axios";
-function useInput(url, validation,go) {
+function useInput(url, validation, go) {
     const [inputs, setInputs] = useState({});
     // // // // // // // // // // // // // // // // // // // //
     useEffect(() => {
@@ -28,15 +28,13 @@ function useInput(url, validation,go) {
         if (!validation(inputs)) {
             return alert("입력값을 확인해주세요");
         }
-        axios
-            .post(url,  { proflie: inputs })
-            .then((res) => {
-                console.log(res.data)
-                onReset();
-                if(go){
-                    go(res.data)
-                }
-            });
+        axios.post(url, { ...inputs }).then((res) => {
+            console.log(res.data);
+            onReset();
+            if (go) {
+                go(res.data);
+            }
+        });
     };
 
     return {

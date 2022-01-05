@@ -11,6 +11,7 @@ const UserContextProvider = ({ children }) => {
     // console.trace()
     const { setToken, config } = useContext(TokenContext);
     const [user, setUser] = useState([]);
+    const [nowUser,setNowUser] = useState('') 
     // const getUser = useCallback(async () => {
     //     const user = await axios.get("/api/home/user", config).then((res) => {
     //         return res.data?.profile;
@@ -22,6 +23,8 @@ const UserContextProvider = ({ children }) => {
 
     //     return null;
     // });
+
+
     useEffect(() => {
         const getUser = async () => {
             console.log(config)
@@ -34,20 +37,22 @@ const UserContextProvider = ({ children }) => {
             });
             console.log(user);
             if (user) {
+                setNowUser(user[0]);
                 return setUser(user);
             }
 
             return null;
         };
         getUser();
-    }, [config]);
+        
+    }, [config,setToken]);
 
     const saveUser = (USER) => {
         // localStorage.setItem("ACCESS_TOKEN", JSON.stringify(TOKEN));
         USER && setUser(USER);
     };
 
-    return <UserContext.Provider value={{ user, setUser: saveUser }}>{children}</UserContext.Provider>;
+    return <UserContext.Provider value={{ user, setUser: saveUser ,nowUser,setNowUser }}>{children}</UserContext.Provider>;
 };
 
 export default UserContextProvider;

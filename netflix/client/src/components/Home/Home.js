@@ -6,6 +6,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { TokenContext } from "../api/TokenContext";
 import EditProfile from "../EditProfile";
+import { UserContext } from "../api/UserContext";
 const ItemComponent = styled.div`
     z-index: 4;
     position: relative;
@@ -17,6 +18,8 @@ const ItemComponent = styled.div`
         border-radius: 5px;
     }
     > h3 {
+        position:absolute;
+        // height: 5.5rem;
         font-size: 2rem;
     }
     > .trailer {
@@ -42,7 +45,9 @@ const ItemComponent = styled.div`
         z-index: 5;
 
         transform: scale(1.5);
-
+        >h3{
+            position:static;
+        }
         > .trailer {
             display: block;
         }
@@ -59,14 +64,15 @@ const ItemComponent = styled.div`
 
 const Item = (props) => {
     const [trailerURL, setTrailerURL] = useState("");
-    const { token, setToken,config } = useContext(TokenContext);
+    const { token, setToken, config } = useContext(TokenContext);
     const [mouseHandler, setMouseHandler] = useState(false);
     //나중에 클래스로 나눠야할듯 MovieService
 
     const trailer = async () => {
-     
+        console.log(props.item.id);
+        const trailerconfig = { ...config, params: { id: props.item.id } };
 
-        await axios.get("/api/home", config, { ...props.item }).then((res) => {
+        await axios.get("/api/home", trailerconfig, { ...props.item }).then((res) => {
             if (res.data.trailerURL) {
                 console.log(res.data.trailerURL);
                 return setTrailerURL(`${res.data.trailerURL}?autoplay=1&mute=1`);
@@ -101,7 +107,8 @@ function Home() {
     const [editProfile, setEditProfile] = useState(false);
     const [movieList, setMovieList] = useState();
     const [movieGenreList, setMovieGenreList] = useState();
-    const { token, setToken } = useContext(TokenContext);
+    const { token, setToken, config } = useContext(TokenContext);
+    const { nowUser } = useContext(UserContext);
     const navigate = useNavigate();
     useEffect(() => {
         console.log(token);
@@ -111,13 +118,6 @@ function Home() {
     }, [token, navigate]);
 
     useEffect(() => {
-        console.log("Home", token);
-
-        const config = {
-            headers: {
-                authorization: `Bearer ${JSON.parse(localStorage.getItem("ACCESS_TOKEN"))}`,
-            },
-        };
         axios.get("/api/home", config).then((res) => {
             console.log(res.data);
             if (res.data.accessToken) {
@@ -130,12 +130,13 @@ function Home() {
                 setMovieGenreList(res.data.movieGenre);
             }
         });
-    }, []);
+    }, [config]);
     const slideSetting = {
-        target: movieList,
+        
         viewCount: 5,
         delay: 500,
         containerStyle: {
+            margin: '2rem 0',
             backgroundColor: "black",
             height: "auto",
             padding: "0 clamp(0px, 4%, 7rem)",
@@ -144,18 +145,21 @@ function Home() {
             borderRadius: "2px",
             padding: "0 0.8rem",
         },
+        dot:false,
         passNum: 5,
         Component: Item,
     };
-
+    const title = [`${nowUser.name} 님이 시청 중인 콘텐츠`,`${nowUser.name} 님이 좋아할만한 영화`,'인기있는 콘텐츠',`상영중인 영화`,`죽기전에 한번은 봐야하는 영화`]
     return (
         <div>
             {editProfile ? <EditProfile setEditProfile={setEditProfile}></EditProfile> : null}
             <Nav setEditProfile={setEditProfile}></Nav>
-            <div className="movie-container ">
-                <h2>박깉애 님이 시청 중인 콘첸츠</h2>
-                <Slider {...slideSetting}></Slider>
-            </div>
+            {movieList?.map((item, index) => {
+               return <div className="movie-container ">
+                    <h2>{title[index]}</h2>
+                    <Slider {...slideSetting} target={item}></Slider>
+                </div>;
+            })}
         </div>
     );
 }

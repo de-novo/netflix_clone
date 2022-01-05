@@ -85,13 +85,13 @@ function Slider(props) {
             </SliderBox>
             <ButtonStyle onClick={slideitem.nextButton} style={{ ...buttonStyle, right: "0" }}></ButtonStyle>
             <ButtonStyle onClick={slideitem.prevButton} style={{ ...buttonStyle, left: "0" }}></ButtonStyle>
-            <div style={DOT_BOX_STYLE}>
+            {dot?<div style={DOT_BOX_STYLE}>
                 <ul style={{ display: "flex", justifyContent: "center" }}>
                     {slideitem.dot?.map((item, index) => (
                         <li key={index}>{item}</li>
                     ))}
                 </ul>
-            </div>
+            </div>:null}
         </SliderContainer>
     );
 }

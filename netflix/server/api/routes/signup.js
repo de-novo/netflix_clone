@@ -51,6 +51,7 @@ export default (app) => {
     //     });
     // });
     route.post("/signup/regform", EmailDuplicationCheck, async (req, res, next) => {
+        console.log(req.body)
         const counter = await CounterModel.findOne({ name: "userCount" });
         const { password, salt } = await userModel.enCrypto(req.body.password);
         console.log(password, "/", salt);
